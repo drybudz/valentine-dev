@@ -3,7 +3,7 @@ const config = {
     projectId: "m2vd2mbt",
     dataset: "production",
     apiVersion: "2025-05-10", // Mothers's day
-    useCdn: true,
+    useCdn: false,
 }
 
 
