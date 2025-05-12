@@ -12,7 +12,7 @@ function HomeVideo({ homePageData }) {
     const section = sectionRef.current;
 
     const handleVideoLoad = () => {
-      console.log('handleVideoLoad executed');
+      // console.log('handleVideoLoad executed');
       if (section) {
         section.classList.add('videoReady');
         // Animate video opacity in
@@ -28,7 +28,7 @@ function HomeVideo({ homePageData }) {
 
       // Check if the video is already loaded
       if (video.readyState >= 2) { // HAVE_CURRENT_DATA or higher
-        console.log('Video already loaded on mount');
+        // console.log('Video already loaded on mount');
         section.classList.add('videoReady');
         gsap.to(video, { opacity: 1, duration: 7, delay: 3, ease: 'power1.inOut' });
       } else {

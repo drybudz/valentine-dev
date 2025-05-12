@@ -6,13 +6,19 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import MenuAnimation from './MenuAnimation';
+import { useAppContext } from './AppContext';
 
-export default function HeaderNavigation({ pages = [] }) { // Default empty array
+export default function HeaderNavigation() { // Default empty array
+    
     const pathname = usePathname();
+    // console.log("Current PATH :", pathname); // To check the current page
     const isHomePage = pathname === '/';
     const headerClasses = `navBar ${isHomePage ? 'homeNavBar' : ''}`;
     const [isMobile, setIsMobile] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const { allData } = useAppContext();
+    const pages = allData?.pages || []; // Access the 'pages' array
+    // console.log("K------NAV WORKS Page Data:", pages); // Is working
 
     useEffect(() => {
         if (typeof window !== 'undefined') {

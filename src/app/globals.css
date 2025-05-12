@@ -612,6 +612,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   justify-content: space-between; /* Keep space-between for large screens */
   max-width: 2000px;
   margin: 0 auto;
+  align-items: end;
 }
 
 .homeLastVideoFooter .leftSide {
@@ -642,7 +643,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
 
 .homeLastVideoFooter .copyRight {
   text-align: left;
-  width: 250px;
+  width: 300px;
 }
 
 .homeLastVideoFooter .pageNoteTitle {
@@ -974,7 +975,7 @@ footer .connectSection {
 
 footer .copyRight {
   text-align: left;
-  width: 250px; /* 250 before .: */
+  width: 300px; /* 250 before .: */
 }
 
 footer .pageNoteTitle, aside .pageNoteTitle {
@@ -1402,6 +1403,7 @@ footer .contactLink:hover {
   letter-spacing: -0.48px;
   font-family: Helvetica Neue;
   font-weight: 500;
+  text-wrap: balance;
 }
 
 .copyRightText span {

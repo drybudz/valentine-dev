@@ -1,11 +1,17 @@
+'use client';
+
 import Image from 'next/image';
 import StickySidebar from '../../components/StickySidebar';
 import { getAboutPage } from "../../../../sanity/schemas/sanity-utils";
+import { useAppContext } from '@/app/components/AppContext';
 
-export const revalidate = 300; // Revalidate every 5 minutes
+// export const revalidate = 300; // Revalidate every 5 minutes
 
-export default async function About() {
-    const aboutPageData = await getAboutPage()
+export default function About() {
+    // const aboutPageData = await getAboutPage()
+    const { allData } = useAppContext();
+    const aboutPageData = allData?.aboutPage || null;
+    //console.log("@AB------About Page Data:", aboutPageData); //is working
 
     if (!aboutPageData) {
         return <div>About Page Not Found</div>
