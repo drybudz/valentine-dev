@@ -3,7 +3,7 @@ import { PortableText } from "@portabletext/react";
 // for this one above it looks like next-sanity also works instead of @portabletext/react, probably Sanity has created its own component
 import Image from 'next/image';
 
-export const revalidate = 30; // Revalidate every 30 seconds
+export const revalidate = 300; // Revalidate every 5 minutes
 
 
 export default async function Project({ params }) {

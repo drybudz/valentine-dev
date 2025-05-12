@@ -15,16 +15,10 @@ export default async function RootLayout({ children }) {
   const data = await getPages(); // The getPages function now returns an object
   const pages = data?.pages || []; // Access the 'pages' array
   
-  // Layout of the Pages //Except Studio & About - - - - - PAGES
+  // Layout of the Pages //Except Studio - - - - - PAGES
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Silkscreen:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body>
         <HomeChecker />

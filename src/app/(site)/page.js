@@ -1,19 +1,18 @@
+// import { PortableText } from "next-sanity"; //test with the next-sanity
+import { PortableText } from "@portabletext/react";
 import { getHomePage } from "../../../sanity/schemas/sanity-utils";
-import Image from 'next/image';
-import Link from 'next/link';
-import TypingText from "../components/TypingText";
 import H2Animation from "../components/H2Animator";
 import HomeVideo from "../components/HomeVideo";
 import LocationsAndEmailAnimator from "../components/LocationsAndEmailAnimator";
 
-export const revalidate = 30; // Revalidate every 30 seconds
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export default async function Home() {
 
   const homePageData = await getHomePage()
 
   if (!homePageData) {
-    return <div>Home Page Not Found, check the status of the available ones at Sanity Studio</div>;
+    return <div>Home Page Not Found</div>;
   }
 
   const locationsAndEmail = (
@@ -27,36 +26,11 @@ export default async function Home() {
     </div>
   );
 
-  // 
-    console.log("homePageData.servicesList:", homePageData?.servicesList); // ADD THIS LINE
-
-
   return (
     <div className="homePage">
       <div className="container">
-
-        {/* Home Page Video */}
-        {/* <section className="homeVideo">
-          {homePageData?.homeVideo1?.asset?.url ? (
-              <video className="videos" autoPlay muted loop>
-                <source src={homePageData.homeVideo1.asset.url} type="video/mp4" />
-              </video>
-            ) : (
-              <video className="videos" autoPlay muted loop>
-                <source src="assets/road2puerto.mp4" type="video/mp4" />
-              </video>
-            )}
-        </section> */}
         <HomeVideo homePageData={homePageData} />
-        
-        {/* Slogan 1  REMOVED*/}
-        
-          {/* <TypingText text={homePageData?.slogan || "Where Vision Meets Execution"} speed={0.06} /> */}
-        
-        {/* Slogan 2 */}
           <section className="sloganVideo two">
-
-            {/* TODO: confirm with Alex if this video will have the Slogan on top*/}
             <div className="SloganContainerVideo">
             <h1>{homePageData?.companyName || "Valentine"}</h1>
               <H2Animation>
@@ -71,91 +45,87 @@ export default async function Home() {
 
         {/* Services 3 */}
         <section className="servicesSection three">
-                
-                <div className="servicesContainer">
-                
-                <H2Animation>
-                  {homePageData?.servicesTitle || "Our Services"}
-                </H2Animation>  
+          <div className="servicesContainer">
+          
+          <H2Animation>
+            {homePageData?.servicesTitle || "Our Services"}
+          </H2Animation>  
 
-                  <div className="servicesDescription">
-                    <p><span>{homePageData?.osDescription || "FULL-SERVICE PRODUCTION AND POST-PRODUCTION, FROM SINGLE ASSETS TO COMPLETE CAMPAIGNS.TECHNICAL EXCELLENCE AND RELIABLE EXECUTION, EVERY TIME."}</span></p>
-                  </div>
-                  <div className="servicesLists">
-                    {homePageData?.servicesList?.map((service, index) => (
-                      <div className={`serviceList${index + 1}`} key={index}>
-                        <h3>{service?.osTitle}</h3>
-                        <ul>
-                          {service?.osItems?.map((item, itemIndex) => (
-                            <li key={itemIndex}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
+            <div className="servicesDescription">
+              {/* <p><span>{homePageData?.osDescription || "FULL-SERVICE PRODUCTION AND POST-PRODUCTION, FROM SINGLE ASSETS TO COMPLETE CAMPAIGNS.TECHNICAL EXCELLENCE AND RELIABLE EXECUTION, EVERY TIME."}</span></p> */}
+              <span><PortableText value ={homePageData?.osDescription || "FULL-SERVICE PRODUCTION"}/></span>
+            </div>
+            <div className="servicesLists">
+              {homePageData?.servicesList?.map((service, index) => (
+                <div className={`serviceList${index + 1}`} key={index}>
+                  <h3>{service?.osTitle}</h3>
+                  <ul>
+                    {service?.osItems?.map((item, itemIndex) => (
+                      <li key={itemIndex}>{item}</li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-                
-                <LocationsAndEmailAnimator
-                  locations={homePageData.locations}
-                  email={homePageData.email}
-                />
-                
+              ))}
+            </div>
+          </div>
+          
+          <LocationsAndEmailAnimator
+            locations={homePageData.locations}
+            email={homePageData.email}
+          /> 
         </section>
         
         {/* Process 4 */}
         <section className="processSection four">
-        
-                <div className="processContainer">
-                    <H2Animation>
-                      {homePageData?.processTitle || "Our Process"}
-                    </H2Animation>
-                    <div className="processDescription">
-                      <div className="processList1">
-                        <h3>
-                          <span>{homePageData?.opTitle1?.slice(0, 2) || ""}</span>{" "}
-                          {homePageData?.opTitle1?.slice(2) || "Discovery"}
-                        </h3>
-                        <p>{homePageData?.opText1 || "TBD"}</p>
-                      </div>
-                      <div className="processList2">
-                        <h3>
-                          <span>{homePageData?.opTitle2?.slice(0, 2) || ""}</span>{" "}
-                          {homePageData?.opTitle2?.slice(2) || "Development"}
-                        </h3>
-                        <p>{homePageData?.opText2 || "TBD"}</p>
-                      </div>
-                      <div className="processList3">
-                        <h3>
-                          <span>{homePageData?.opTitle3?.slice(0, 2) || ""}</span>{" "}
-                          {homePageData?.opTitle3?.slice(2) || "Production"}
-                        </h3>
-                        <p>{homePageData?.opText3 || "TBD"}</p>
-                      </div>
-                      <div className="processList4">
-                        <h3>
-                          <span>{homePageData?.opTitle4?.slice(0, 2) || ""}</span>{" "}
-                          {homePageData?.opTitle4?.slice(2) || "Delivery"}
-                        </h3>
-                        <p>{homePageData?.opText4 || "TBD"}</p>
-                      </div>
-                    </div>
-                </div>
+          <div className="processContainer">
+            <H2Animation>
+              {homePageData?.processTitle || "Our Process"}
+            </H2Animation>
+            <div className="processDescription">
+              <div className="processList1">
+                <h3>
+                  <span>{homePageData?.opTitle1?.slice(0, 2) || ""}</span>{" "}
+                  {homePageData?.opTitle1?.slice(2) || "Discovery"}
+                </h3>
+                <p>{homePageData?.opText1 || "TBD"}</p>
+              </div>
+              <div className="processList2">
+                <h3>
+                  <span>{homePageData?.opTitle2?.slice(0, 2) || ""}</span>{" "}
+                  {homePageData?.opTitle2?.slice(2) || "Development"}
+                </h3>
+                <p>{homePageData?.opText2 || "TBD"}</p>
+              </div>
+              <div className="processList3">
+                <h3>
+                  <span>{homePageData?.opTitle3?.slice(0, 2) || ""}</span>{" "}
+                  {homePageData?.opTitle3?.slice(2) || "Production"}
+                </h3>
+                <p>{homePageData?.opText3 || "TBD"}</p>
+              </div>
+              <div className="processList4">
+                <h3>
+                  <span>{homePageData?.opTitle4?.slice(0, 2) || ""}</span>{" "}
+                  {homePageData?.opTitle4?.slice(2) || "Delivery"}
+                </h3>
+                <p>{homePageData?.opText4 || "TBD"}</p>
+              </div>
+            </div>
+          </div>
 
-                <LocationsAndEmailAnimator
-                  locations={homePageData.locations}
-                  email={homePageData.email}
-                />
+          <LocationsAndEmailAnimator
+            locations={homePageData.locations}
+            email={homePageData.email}
+          />
         </section>
         
         {/* Approach 5 */}
         <section className="approachSection five">
-            
-            
-
             <div className="approachContainer">
               <H2Animation>{homePageData?.approachTitle || "Approach"}</H2Animation>
                 <div className="approachDescription">
-                  <p><span>{homePageData?.aDescription || "We listen. We learn. We adapt. We execute. We finish what we start."}</span></p>
+                  {/* <p><span>{homePageData?.aDescription || "We listen. We learn. We adapt. We execute. We finish what we start."}</span></p> */}
+                  <span><PortableText value ={homePageData?.aDescription || "We listen."}/></span>
                 </div>
             </div>
             

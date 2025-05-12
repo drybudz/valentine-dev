@@ -1,9 +1,8 @@
-import { getProjects } from "../../../sanity/schemas/sanity-utils";
 import Image from 'next/image';
-import StickySidebar from "../components/StickySidebar";
-import { getAboutPage } from "../../../sanity/schemas/sanity-utils";
+import StickySidebar from '../../components/StickySidebar';
+import { getAboutPage } from "../../../../sanity/schemas/sanity-utils";
 
-export const revalidate = 30; // Revalidate every 30 seconds
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export default async function About() {
     const aboutPageData = await getAboutPage()

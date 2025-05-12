@@ -3,7 +3,7 @@ import clientConfig from "./../config/client-config"
 
 export async function getHomePage() {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "homepage" && status == true][0]{
+    groq`*[_type == "homepage"][0]{
       companyLogo{
         asset->{
           _id,
@@ -23,14 +23,7 @@ export async function getHomePage() {
       pageNote->{
         ...
       },
-      orlaLeft{
-        asset->{
-          _id,
-          url
-        },
-        alt
-      },
-      orlaRight{
+      homeFrame{
         asset->{
           _id,
           url
@@ -124,9 +117,8 @@ export async function getProject(slug) {
             alt,
             "url": asset->url
           },
-          pageNote->{...}
         },
-        "pageNote": *[_type == "pageNote"][0] { // Fetch the first pageNote, only 1
+        "pageNote": *[_type == "pageNote"][0] { 
           ...
         }
       }`
@@ -243,31 +235,28 @@ export async function getProject(slug) {
         teamMembers[]->{
           _id,
           fullName,
-          slug,
           talentPosition,
           city,
           image{
             asset->{ _id, url },
             alt
           },
-          description,
-          status
         },
         projects[]->{
           _id,
           name,
-          slug,
-          mainImage{
-            asset->{ _id, url },
-            alt
-          },
           projectImages[]{ // Fetch the array of project images
-            asset->{ _id, url },
+            asset->{ 
+              _id, 
+              url,
+              metadata {
+                lqip  // ← And this
+              }
+            },
             alt
           }
-          // Add other project fields you need
         },
-        pageNote->{ // Fetch the linked pageNote
+        pageNote->{ 
           _id,
           _createdAt,
           workTitle,

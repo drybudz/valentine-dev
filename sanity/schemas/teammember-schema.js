@@ -10,13 +10,6 @@ const teamMember = {
         description: 'The full name of the team member.',
       },
       {
-        name: 'slug',
-        title: 'Slug',
-        type: 'slug',
-        options: { source: 'fullName' },
-        description: 'A unique identifier for the member (auto-generated from full name).',
-      },
-      {
         name: 'talentPosition',
         title: 'Talent Position',
         type: 'string',
@@ -44,18 +37,6 @@ const teamMember = {
           },
         ],
         description: 'Image of the team member.',
-      },
-      {
-        name: 'description',
-        title: 'Description',
-        type: 'text',
-        description: 'A brief description or bio of the team member (optional).',
-      },
-      {
-        name: 'status',
-        title: 'Status',
-        type: 'boolean',
-        description: 'Whether the team member is currently active or featured.',
       },
       // You can add more fields here, like social media links, etc.
     ],

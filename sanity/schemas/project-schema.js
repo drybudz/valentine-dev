@@ -10,13 +10,6 @@ const project = {
         description: 'The name of the project.',
       },
       {
-        name: 'slug',
-        title: 'Slug',
-        type: 'slug',
-        options: { source: 'name' },
-        description: 'A unique identifier for the project, created from the title.',
-      },
-      {
         name: 'clientName',
         title: 'Client Name',
         type: 'string',
@@ -25,31 +18,14 @@ const project = {
       {
         name: 'projectYear',
         title: 'Project Year',
-        type: 'string', // Or 'number' if you prefer
+        type: 'string', 
         description: 'The year the project was completed or launched.',
       },
       {
         name: 'projectDescription',
         title: 'Project Description',
-        type: 'array',
-        of: [{ type: 'block' }],
-        description: 'A brief description of the project.',
-      },
-      {
-        name: 'image',
-        title: 'Main Image',
-        type: 'image',
-        options: {
-          hotspot: true,
-        },
-        fields: [
-          {
-            name: 'alt',
-            title: 'Main Image Alt',
-            type: 'string',
-          },
-        ],
-        description: 'The main image for the project.',
+        type: 'text',
+        description: 'Internal project description for team reference',
       },
       {
         name: 'projectImages',
@@ -70,19 +46,14 @@ const project = {
             ],
           },
         ],
-        description: 'Additional images for the project.',
-      },
-      {
-        name: 'url',
-        title: 'URL',
-        type: 'url',
+        description: 'All images for the project (first image will be used as preview).',
       },
     ],
     preview: {
       select: {
         title: 'name',
-        subtitle: 'slug.current',
-        media: 'image',
+        subtitle: 'clientName',
+        media: 'projectImages.0.asset',
       },
     },
   };

@@ -59,32 +59,6 @@ const pageNote = {
         description: 'Optional links for the "Connect" section (e.g., social media, contact).',
       },
       {
-        name: 'noteImage',
-        title: 'Note Image URL',
-        type: 'image',
-        options: {
-          hotspot: true,
-        },
-        fields: [
-          {
-            name: 'alt',
-            title: 'Note Image Alt Text',
-            type: 'string',
-            description: 'Alternative text for the note image (should be empty if purely decorative).',
-          },
-        ],
-        description: 'Optional image for the page note (e.g., sidebar image).',
-      },
-      {
-        name: 'companyLogo',
-        title: 'Company Logo URL',
-        type: 'image',
-        options: {
-          hotspot: true,
-        },
-        description: 'Optional company logo image.',
-      },
-      {
         name: 'copyrightText',
         title: 'Copyright Text',
         type: 'string',

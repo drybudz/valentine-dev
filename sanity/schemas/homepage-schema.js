@@ -61,14 +61,6 @@ const homepage = {
       group: 'general',
     },
     {
-      name: 'status',
-      title: 'Status',
-      type: 'boolean',
-      description:
-        'If on, this home page will be rendered. Useful for switching between available home Pages.',
-      group: 'general',
-    },
-    {
       name: 'companyIcon',
       title: 'Company Icon',
       type: 'image',
@@ -104,8 +96,8 @@ const homepage = {
       group: 'pageNoteGroup',
     },
     {
-      name: 'orlaLeft',
-      title: 'Orla Left URL',
+      name: 'homeFrame',
+      title: 'Home Frame Image',
       type: 'image',
       options: {
         hotspot: true,
@@ -113,30 +105,12 @@ const homepage = {
       fields: [
         {
           name: 'alt',
-          title: 'Orla Left Alt',
+          title: 'Home Frame Alt',
           type: 'string',
-          description: 'Alternative text for the left ornament image.',
+          description: 'Alternative text for the home frame.',
         },
       ],
-      description: 'Left ornament image.',
-      group: 'pageNoteGroup',
-    },
-    {
-      name: 'orlaRight',
-      title: 'Orla Right URL',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          title: 'Orla Right Alt',
-          type: 'string',
-          description: 'Alternative text for the right ornament image.',
-        },
-      ],
-      description: 'Right ornament image.',
+      description: 'home frame image.',
       group: 'pageNoteGroup',
     },
     // Hero Section Group
@@ -189,7 +163,8 @@ const homepage = {
     {
       name: 'osDescription',
       title: 'Services Description',
-      type: 'text',
+      type: 'array',
+      of: [{ type: 'block' }],
       description: 'Description for the "Services" section.',
       group: 'services',
     },
@@ -301,7 +276,8 @@ const homepage = {
     {
       name: 'aDescription',
       title: 'Approach Description',
-      type: 'text',
+      type: 'array',
+      of: [{ type: 'block' }],
       description: 'Description for the "Approach" section.',
       group: 'approach',
     },

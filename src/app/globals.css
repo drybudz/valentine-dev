@@ -1,15 +1,27 @@
 @font-face {
-  font-family: 'Baskerville'; /* Choose a name for this font-family */
-  src: url('/fonts/Baskerville.ttc') format('collection'); /* Use 'collection' for .ttc files */
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Helvetica Neue'; /* Use a specific font-family name */
+  src: url('/fonts/HelveticaNeue.ttc') format('truetype-collection');
+  font-weight: 500; /* Medium weight is 500 */
+  font-style: normal; /* Assuming Medium is not italic */
+  font-display: swap; /* Recommended for performance */
 }
 
+/* Regular face */
 @font-face {
-  font-family: 'HelveticaNeue'; /* Choose a name for this font-family */
-  src: url('/fonts/HelveticaNeue.ttc') format('collection'); /* Use 'collection' for .ttc files */
+  font-family: 'Baskerville';
+  src: url('/fonts/Baskerville.ttc') format('truetype-collection');
   font-weight: normal;
   font-style: normal;
+  font-display: swap; /* Optional for performance */
+}
+
+/* Italic face - MUST use same font-family name */
+@font-face {
+  font-family: 'Baskerville';
+  src: url('/fonts/Baskerville.ttc') format('truetype-collection');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -30,7 +42,7 @@ body {
   color: #5F1B19;
   background-color: #fff;
   /* font-family: Rubik, Helvetica, sans-serif; */
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Helvetica Neue, sans-serif;
   /* Improves the rendering of fonts on WebKit-based browsers (like Chrome and Safari), making them appear smoother. */
   -webkit-font-smoothing: antialiased;
   /* Similar but for Gecko-based browsers (like Firefox) on macOS. */
@@ -83,7 +95,7 @@ a {
   /* Optional: Add a slight background blur for better readability over video */
   /* backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.1); /* Adjust opacity as needed */
-  font-family: 'HelveticaNeue', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 .navBar.homeNavBar .homeNavLink,
@@ -151,7 +163,7 @@ a {
   margin-left: 1rem;
   transition: color 0.3s ease;
   position: relative; /* Needed for the underline effect */
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.32px;
 }
 
@@ -243,6 +255,10 @@ header.navBar.homeNavBar + main {
   /* position: relative; - commented out in the second rule */
 }
 
+.servicesDescription {
+  padding-bottom: 120px;
+}
+
 .homePage section > *:not(.locationsNemail) {
   /* Target all direct children that are NOT .locationsNemail */
   margin-top: auto; /* Push them towards the top (due to space-between) */
@@ -281,9 +297,10 @@ header.navBar.homeNavBar + main {
   align-items: center; /* Vertically align items in case they have different heights */
   width: 100%; /* Ensure it takes the full width of the section */
   padding: 10px 0 15px 0; /* Add some vertical padding for spacing from other elements */
-  font-family: HelveticaNeue, sans-serif;
+  font-family: Helvetica Neue, sans-serif;
   text-transform: uppercase;
   font-size: 12px;
+  font-weight: 500;
 }
 
 .locationsCodes,
@@ -341,7 +358,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   
 }
   .servicesDescription p  {
-      width: 65%;
+      width: 80%;
       margin: 0 auto;
     }
   .approachContainer p {
@@ -359,16 +376,21 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
     font-size: 12px;
   }
 
-  .servicesDescription p span, .approachDescription p span {
+  .servicesDescription span p, .approachDescription span p {
     font-weight: 400;
     font-size: 60px;
     text-transform: uppercase;
     font-family: 'Baskerville', serif;
     white-space: pre-wrap;
     line-height: 83%;
-    font-style: italic;
+    /* font-style: italic; */
     letter-spacing: -0.64px;
     
+  }
+
+  span p:empty {
+      height: 60px;
+      margin: 0 auto;
   }
 
   .servicesLists h3 {
@@ -406,11 +428,15 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
     list-style: none;
     padding: 0;
     text-transform: uppercase;
-    font-family: HelveticaNeue, sans-serif;
+    font-family: Helvetica Neue, sans-serif;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.32px;
     line-height: 93%;
+  }
+
+  .servicesLists ul li {
+    font-weight: 500;
   }
 
   .processDescription div h3 {
@@ -478,25 +504,34 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   /* Responsive adjustments for smaller screens */
   /* 7   6   7 */
 
-@media (max-width: 767px) {
+  @media (max-width: 767px) {
 
-.servicesSection h2 {
-  padding: 100px 0 0 0;
-}
+  .servicesSection h2 {
+    padding: 100px 0 0 0;
+  }
 
-.processDescription div h3 {
-  text-align: center;
-  font-size: 20px;
-}
+  .servicesDescription {
+    padding-bottom: 20px;
+  }
 
-.processDescription div h3:not(:first-child) {
-  padding: 10px 0 0px 0;
-}
+  .servicesDescription span p, .approachDescription span p, .processDescription div h3 {
+    text-align: center;
+    font-size: 40px;
+  }
 
-.processDescription > div:hover {
-  /* Styles for the hover state */
-  height: 160px;
-}
+  span p:empty {
+    height: 40px;
+    margin: 0 auto;
+  }
+
+  .processDescription div h3:not(:first-child) {
+    padding: 10px 0 0px 0;
+  }
+
+  .processDescription > div:hover {
+    /* Styles for the hover state */
+    height: 160px;
+  }
 
   .servicesLists {
     flex-direction: column; /* Stack columns vertically on smaller screens */
@@ -511,7 +546,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   }
 
   .servicesDescription p span, .approachDescription p span {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 20px;
   }
 }
@@ -525,7 +560,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
     
     font-size: 51px;
     background-color: initial; /* Remove existing background color */
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
     text-wrap: balance;
   }
 
@@ -561,11 +596,12 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  height: 100vh;
 }
 
 .homeLastVideoFooter {
   width: 100%;
-  padding: 20px;
+  padding: 20px 20px 50px 20px;
   bottom: 0;
   left: 0;
   z-index: 10;
@@ -587,10 +623,11 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
 .leftSide .pageNoteText, .leftSide a, aside.sideBar .pageNoteText, aside.sideBar .connectSection a {
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   white-space: pre-wrap;
   text-wrap: balance;
-  line-height: 93%
+  line-height: 95%;
+  letter-spacing: 0.70px;
 }
 
 .homeLastVideoFooter .workSection {
@@ -663,7 +700,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
 header .pageDescription {
   text-transform: uppercase;
   margin-bottom: 20px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   text-wrap: balance;
   white-space: pre-wrap;
@@ -692,7 +729,7 @@ header .contactInfo {
     display: flex;
     gap: 7px;
     overflow-x: auto; /* Enable horizontal scrolling */
-    padding: 40px 0px 20px 7px; /* Add padding for content spacing and scrollbar */
+    padding: 40px 0px 40px 7px; /* Add padding for content spacing and scrollbar */
     /* Optional: Add scrollbar styling / Firefox */
     /* scrollbar-width: thin; 
     scrollbar-color: #ccc #f0f0f0;  */
@@ -728,6 +765,7 @@ header .contactInfo {
 
 .gallery-panel{
     width: 395px; /* Fixed size for the team member pictures */ 
+    height: 62vh;
     flex-shrink: 0; /* Prevent shrinking */
     /* border-radius: 0.75rem; */
     cursor: n-resize;
@@ -750,7 +788,7 @@ header .contactInfo {
 
 .member-title span {
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   display: block;
   padding: 7px;
@@ -772,6 +810,7 @@ header .contactInfo {
 
 .gallery-panel img {
     width: 100%;
+    height: 100%;
     /* Allow image to take available vertical space */
     /* flex-grow: 1;  */
     object-fit: cover;
@@ -886,8 +925,8 @@ header .contactInfo {
     grid-template-columns: repeat(auto-fit, minmax(50%, 1fr)); /* Two columns on medium screens */
   }
 
-  .pageContainer header h1, .aboutTitle {
-      margin-bottom: -20px;
+  .pageContainer header h1 {
+      /* margin-bottom: -20px; */
       font-size: 51.75px;
       font-weight: 500;
   }
@@ -1128,7 +1167,7 @@ footer .contactLink:hover {
 .aboutMain {
   flex: 1; /* Still allows the main content to take up the remaining horizontal space */
   color: #5F1B19; /* Font Color */
-  max-width: 1300px; /* Set the maximum width of the aboutPage without the Sidebar */
+  /* max-width: 1300px;  */
   min-width: 0;
   overflow-anchor: none;
 }
@@ -1182,7 +1221,7 @@ footer .contactLink:hover {
   margin-bottom: 50px; /* Slightly increased bottom margin */
   text-align: center; /* Default text alignment */
   width: 100%; /* Consistent width for the project section */
-  max-width: 1300px; /* Optional: Add a maximum width for very large screens */
+  /* max-width: 1300px;  */
 }
 
 .aboutMain .sectionContainer:last-child {
@@ -1212,7 +1251,7 @@ footer .contactLink:hover {
   white-space: nowrap; /* Prevent titles from wrapping and taking up more width */
   overflow: hidden;       /* Hide overflowing text */
   text-overflow: ellipsis; /* Indicate overflow with an ellipsis */
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -1222,7 +1261,7 @@ footer .contactLink:hover {
   transform: translateX(-50%); /* Center the element */
   text-align: center;
   width: 60%; /* Adjust as needed to prevent overlap with long client/year */
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -1329,7 +1368,7 @@ footer .contactLink:hover {
 
 .sideBar {
   width: 100%; /* Sidebar takes up 30% of the parent's width */
-  padding: 20px 20px 20px 60px; 
+  padding: 20px 20px 20px 85px; 
   background-color: #fff; /* Example background for visibility */
   flex-shrink: 0;
   color: #5F1B19; /* Font Color */
@@ -1343,7 +1382,7 @@ footer .contactLink:hover {
 }
 
 .sideBar .pageNote {
-  max-width: 400px;
+  max-width: 382px;
   width: 100%;
   height: 90%; /* Take full height of sidebar */
   display: flex;
@@ -1353,14 +1392,16 @@ footer .contactLink:hover {
 
 .sideBar .copyRight {
   margin-top: auto; /* Push to bottom */
-  padding-bottom: 20px; /* Add some space at the bottom */
+  padding-bottom: 30px; /* Add some space at the bottom */
 }
 
 .copyRightText {
-  font-size: 10px; /* Adjust as needed */
+  font-size: 10px; 
   line-height: 107%;
   text-transform: uppercase;
   letter-spacing: -0.48px;
+  font-family: Helvetica Neue;
+  font-weight: 500;
 }
 
 .copyRightText span {
@@ -1369,6 +1410,9 @@ footer .contactLink:hover {
 
 p.copyRightText b {
   font-style: italic;
+  font-family: Baskerville;
+  font-weight: 600;
+  font-size: 12px;
 }
 
 .sideBar .workSection {
@@ -1418,7 +1462,7 @@ p.copyRightText b {
     padding: 10px;
   }
   header.navBar img {
-      width: 120px;
+      width: 77px;
       height: auto;
   }
   .aboutMain .sectionContainer:last-child {
@@ -1469,7 +1513,7 @@ p.copyRightText b {
     text-overflow: initial; /* Show the full text */
     text-transform: uppercase; /* Keep uppercase */
     font-size: 12px; /* Keep the font size */
-    font-weight: 600; /* Keep the font weight */
+    font-weight: 500; /* Keep the font weight */
     overflow: visible; /* Show the full text */
     width: 100%; /* Make each h3 take full width of the container */
     letter-spacing: 0.32px; /* Keep letter spacing */
@@ -1480,7 +1524,7 @@ p.copyRightText b {
     text-align: center; /* Center the project title */
     text-transform: uppercase; /* Keep uppercase */
     width: 100%; /* Take full width */
-    font-weight: 600; /* Keep font weight */
+    font-weight: 500; /* Keep font weight */
     position: static; /* Remove absolute positioning */
     left: auto; /* Reset left */
     transform: translateX(0); /* Reset transform */

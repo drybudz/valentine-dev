@@ -1,8 +1,9 @@
 // import { PortableText } from "next-sanity"; //test with the next-sanity
 import { PortableText } from "@portabletext/react";
 import { getPageData } from "../../../../sanity/schemas/sanity-utils";
+import Image from 'next/image';
 
-export const revalidate = 30; // Revalidate every 30 seconds
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export default async function Page({ params }) {
     const { slug } = await params;
@@ -25,7 +26,7 @@ export default async function Page({ params }) {
             
             
             <div className="pageContent">
-                {/* Team Members Page */}
+                {/* Talent Page */}
                 
                 {pageData.teamMembers && pageData.teamMembers.length > 0 && (
                 <div className="gallery">
@@ -52,7 +53,7 @@ export default async function Page({ params }) {
                 </div>
                 )}
 
-                {/* Projects Page */}
+                {/* Work Page */}
 
                 {pageData.projects && pageData.projects.length > 0 && (
                     <div className="workImages">
@@ -75,19 +76,44 @@ export default async function Page({ params }) {
                   
                       const shuffledAllImages = shuffleArray(allProjectImages);
                   
-                      return shuffledAllImages
+                    //   return shuffledAllImages
+                    //     .slice(0, 16) // Take only the first 16 elements
+                    //     .map((image, index) => (
+                    //       <img
+                    //         key={image?.asset?.url || `all-${index}`}
+                    //         src={image?.asset?.url || ''}
+                    //         alt={image?.alt || 'Project Image'}
+                    //         className="workProductImage"
+                    //       />
+                    //     ));
+
+                        return shuffledAllImages
                         .slice(0, 16) // Take only the first 16 elements
                         .map((image, index) => (
-                          <img
+                            <Image
                             key={image?.asset?.url || `all-${index}`}
                             src={image?.asset?.url || ''}
-                            alt={image?.alt || 'Project Image'}
+                            alt={image?.alt || 'Valentine Work Content'}
+                            width={500} 
+                            height={500} 
                             className="workProductImage"
-                          />
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover'
+                            }}
+                            quality={80}
+                            unoptimized={image.asset.url.endsWith('.gif')}
+                            placeholder={image?.asset?.metadata?.lqip ? 'blur' : 'empty'}
+                            blurDataURL={image?.asset?.metadata?.lqip || ''}
+                            />
                         ));
+                        
                     })()}
                   </div>
                 )}
+
+                {/* Footer / Page Note */}
 
                 <footer>
                     {pageData?.pageNote && (
