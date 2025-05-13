@@ -2,11 +2,11 @@
 
 // import { PortableText } from "next-sanity"; //test with the next-sanity
 import { PortableText } from "@portabletext/react";
-import { getPageData } from "../../../../sanity/schemas/sanity-utils";
 import Image from 'next/image';
 import { useAppContext } from "@/app/components/AppContext";
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import ImagesAnimation from "@/app/components/ImagesAnimation";
 
 // export const revalidate = 300; // Revalidate every 5 minutes
 
@@ -26,19 +26,19 @@ export default function Page() {
         const [shuffledImages, setShuffledImages] = useState([]);
 
         useEffect(() => {
-            // Only run on client side
             if (pageWork?.projects) {
-                const allProjectImages = [];
-                pageWork.projects.forEach((project) => {
-                    const images = [project.mainImage, ...(project.projectImages || [])].filter(Boolean);
-                    allProjectImages.push(...images);
-                });
-                
-                // Shuffle only on client side
-                const shuffled = [...allProjectImages].sort(() => Math.random() - 0.5);
-                setShuffledImages(shuffled.slice(0, 16));
+              const allProjectImages = [];
+              pageWork.projects.forEach((project) => {
+                const images = [project.mainImage, ...(project.projectImages || [])].filter(Boolean);
+                allProjectImages.push(...images);
+              });
+              
+              // Don't slice here - pass full array to animation component
+              const shuffled = [...allProjectImages].sort(() => Math.random() - 0.5);
+              setShuffledImages(shuffled); // Remove .slice(0, 16)
             }
-        }, [pageWork]);
+          }, [pageWork]);
+
 
     if (!pageTalent || !pageWork) {
         return (
@@ -101,27 +101,42 @@ export default function Page() {
                 {/* Work Page */}
                 {/* IF CURRENT PATH == /work do this */}
                 {isWorkPage && pageWork.projects && pageWork.projects.length > 0 && (
+                <ImagesAnimation 
+                    allImages={shuffledImages} // Pass FULL array here
+                    visibleCount={16}
+                    intervalTime={4000}
+                    fadeDuration={1000}
+                >
+                    {(visibleImages, fadingOut) => (
                     <div className="workImages">
-                    {shuffledImages.map((image, index) => (
+                        {visibleImages.map((image, index) => (
+                        <div 
+                            key={`${image?.asset?.url}-${index}`}
+                            className={`image-container ${fadingOut.includes(index) ? 'fade-out' : 'fade-in'}`}
+                        >
                             <Image
-                                key={image?.asset?.url || `work-${index}`}
-                                src={image?.asset?.url || ''}
-                                alt={image?.alt || 'Valentine Work Content'}
-                                width={500} 
-                                height={500} 
-                                className="workProductImage"
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover'
-                                }}
-                                quality={80}
-                                unoptimized={image?.asset?.url?.endsWith('.gif')}
-                                placeholder={image?.asset?.metadata?.lqip ? 'blur' : 'empty'}
-                                blurDataURL={image?.asset?.metadata?.lqip || ''}
+                            src={image?.asset?.url || ''}
+                            alt={image?.alt || 'Valentine Work Content'}
+                            width={500}
+                            height={500}
+                            className="workProductImage"
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                position: 'relative'
+                            }}
+                            quality={80}
+                            loading="lazy"
+                            unoptimized={image?.asset?.url?.endsWith('.gif')}
+                            placeholder={image?.asset?.metadata?.lqip ? 'blur' : 'empty'}
+                            blurDataURL={image?.asset?.metadata?.lqip || ''}
                             />
+                        </div>
                         ))}
-                  </div>
+                    </div>
+                    )}
+                </ImagesAnimation>
                 )}
 
                 {/* Footer / Page Note */}

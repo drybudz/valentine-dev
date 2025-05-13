@@ -5,7 +5,7 @@ import { useIntersection } from 'react-use';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
-import { Observer } from 'gsap/Observer';
+// import { Observer } from 'gsap/Observer';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -15,15 +15,15 @@ const H2Animation = ({ children }) => { // Receive the children prop
   const intersection = useIntersection(h2Ref, {
     root: null,
     rootMargin: '0px',
-    threshold: 0.5, // Trigger when 50% of the element is visible
+    threshold: 0.7, // Trigger when 50% of the element is visible
   });
 
   const fadeIn = () => {
     if (h2Ref.current) {
       gsap.to(h2Ref.current, {
-        duration: 1, // Adjust duration as needed
+        duration: 3, // Adjust duration as needed
         opacity: 1,
-        y: 0, // Assuming you want to move it from an initial y offset
+        y: -10, // Assuming you want to move it from an initial y offset
         ease: "power2.out",
         delay: 0.2, // Adjust delay as needed
       });
@@ -32,9 +32,9 @@ const H2Animation = ({ children }) => { // Receive the children prop
       const siblingElement = h2Ref.current.nextElementSibling;
       if (siblingElement) {
         gsap.to(siblingElement, {
-          duration: 2, // Adjust duration as needed
+          duration: 2.7, // Adjust duration as needed
           opacity: 1,
-          y: 0, // Assuming you want to move it from an initial y offset
+          y: -10, // Assuming you want to move it from an initial y offset
           ease: "power2.out",
           delay: 0.7, // Slightly later delay for the sibling
         });
@@ -67,12 +67,17 @@ const H2Animation = ({ children }) => { // Receive the children prop
   };
 
   useEffect(() => {
-    if (intersection && intersection.intersectionRatio > 0.5) {
-      fadeIn();
-    } else {
-      fadeOut();
+    if (!intersection) return;
+  
+    const ratio = intersection.intersectionRatio;
+  
+    if (ratio >= 0.7) {
+      fadeIn(); // At least half in view
+    } else if (ratio === 0) {
+      fadeOut(); // Fully out of view
     }
   }, [intersection]);
+  
 
   return (
     <>

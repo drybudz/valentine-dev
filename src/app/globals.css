@@ -238,25 +238,43 @@ header.navBar.homeNavBar + main {
 .homePage .container {
   overflow-y: scroll;
   height: 100vh;
-  /* Enable vertical scroll snapping */
   scroll-snap-type: y mandatory; 
+  /* Enable vertical scroll snapping */
+  
 }
 
-.homePage section:not(.homeVideo) {
+/* section .two, section .three, section .four, section .five { */
+.sloganVideo.two, .processSection.four, .approachSection.five {
   min-height: 100vh;
   display: flex;
   place-items: center;
   flex-direction: column;
   gap: 10px;
-  justify-content: space-between; /* Combined and using the later value */
+  justify-content: end; 
   align-items: center;
   scroll-snap-align: start;
   overflow: hidden;
   /* position: relative; - commented out in the second rule */
 }
 
+.servicesSection.three{
+  min-height: 100vh;
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-around; 
+  align-items: center;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.servicesTop {
+  margin-top: 50px;
+}
+
 .servicesDescription {
-  padding-bottom: 120px;
+  /* padding-bottom: 2%; */
 }
 
 .homePage section > *:not(.locationsNemail) {
@@ -279,10 +297,13 @@ header.navBar.homeNavBar + main {
   margin-bottom: auto;
 }
 
-.homePage section.three > *:not(.locationsNemail) {
-  /* Special handling for the third section if needed */
-  margin-top: auto;
-  margin-bottom: auto;
+.servicesContainer {
+  margin-bottom: 0 !important;
+}
+
+.homePage section.three {
+  /* Our Services */
+  margin:20px; /*I need this one for it to appear*/
 }
 
 .homePage section.four > *:not(.locationsNemail) {
@@ -319,9 +340,26 @@ header.navBar.homeNavBar + main {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure video covers the section */
+  object-fit: cover; 
   z-index: -1; /* Place behind text */
 }
+
+/*  */
+.overlayFrame {
+  position: fixed; /* Covers entire viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999; /* Higher than everything else */
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+.overlayFrame img {
+  height: 122% !important;
+  top: 7px !important;
+}
+/*  */
 
 /* "Hidden" name of the company to get an h1 with it  */
 .SloganContainerVideo h1 {
@@ -389,8 +427,8 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   }
 
   span p:empty {
-      height: 60px;
-      margin: 0 auto;
+      /* height: 60px; */
+      margin: 2% auto;
   }
 
   .servicesLists h3 {
@@ -410,7 +448,17 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
     gap: 20px; /* Space between the columns */
     width: 100%; /* Take full width of the parent */
     max-width: 960px; /* Optional: Limit the maximum width of the container */
-    margin: 20px auto; /* Center the container horizontally and add top/bottom margin */
+    margin: 0px auto; /* Center the container horizontally and add top/bottom margin */
+  }
+
+  .servicesLists .animatedDivs {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 960px;
+      margin: 0px auto;
+      display: flex;
   }
   
   .serviceList1,
@@ -456,7 +504,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   flex-direction: column; /* Arrange divs vertically */
 }
 
-.processDescription > div {
+.processDescription .animatedDivs > div {
   /* Styles for the normal state */
   height: 90px; /* Adjust as needed for your initial content height */
   display: flex; /* Enable flexbox for vertical centering on hover */
@@ -467,7 +515,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   transition: height 1s ease-in-out; /* Smooth transition for the height change */
 }
 
-.processDescription > div:hover {
+.processDescription .animatedDivs > div:hover {
   /* Styles for the hover state */
   height: 200px;
   justify-content: center; /* Vertically center content on hover */
@@ -477,7 +525,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   /* transition: height 3s ease-in-out;  */
 }
 
-.processDescription > div h3 {
+.processDescription .animatedDivs > div h3 {
   margin-top: 0; /* Reset default margin for the heading */
   font-family: 'Baskerville', serif;
   font-weight: 400;
@@ -621,7 +669,18 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   padding-left: 30px;
 }
 
-.leftSide .pageNoteText, .leftSide a, aside.sideBar .pageNoteText, aside.sideBar .connectSection a {
+/* Removed aside.sideBar .pageNoteText, for anomation */
+
+aside.sideBar .pageNoteText {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: pre-wrap;
+  line-height: 95%;
+  letter-spacing: 0.70px;
+}
+
+.leftSide .pageNoteText, .leftSide a, aside.sideBar .connectSection a {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 500;
@@ -720,7 +779,10 @@ header .contactInfo {
 }
 
 /* Team Members Styles   -----TM Changes */
-  
+  .pageContent .gallery {
+    overflow-y: clip; /*Was not working in the class bellow idk*/
+  } 
+
   /* --- Gallery Container --- */
   .gallery{
     min-height: 400px; /* Suggest a min-height */
@@ -847,7 +909,7 @@ header .contactInfo {
 /* Move image up and reveal full name on hover */
 .gallery-panel:hover img {
   transform: translateY(-6px); /* Adjust this value as needed */
-  height: auto;
+  /* height: auto; */
 }
 
 .gallery-panel:hover .fullname {
@@ -919,6 +981,39 @@ header .contactInfo {
   display: block; /* Prevent extra space below inline elements */
   object-fit: cover;
 }
+
+/*  */
+.workImages .image-container {
+  position: relative;
+  transition: opacity 1s ease;
+  width: 100%;
+  aspect-ratio: 671/1000; /* For exact ratio (439/654) */
+  /* OR */
+  aspect-ratio: 2/3; /* Simplified ratio (close enough) */
+  min-height: 150px; /* Fallback for older browsers */
+}
+/* Modern aspect-ratio will override this, but it's good for fallback */
+@supports not (aspect-ratio: 2/3) {
+  .workImages .image-container::before {
+    content: "";
+    display: block;
+    padding-bottom: 149%; /* (654/439)*100 ≈ 149% */
+    /* This creates the same ratio using old-school padding technique */
+  }
+}
+
+.workImages .fade-out {
+  opacity: 0;
+}
+
+.workImages .fade-in {
+  opacity: 1;
+}
+
+.workImages .workProductImage {
+  transition: opacity 1s ease;
+}
+/*  */
 
 /* Optional: Adjust for smaller screens if needed */
 @media (max-width: 575px) {
@@ -1225,7 +1320,7 @@ footer .contactLink:hover {
   /* max-width: 1300px;  */
 }
 
-.aboutMain .sectionContainer:last-child {
+.lastSection {
   margin-bottom: 300px; 
 }
 
@@ -1420,6 +1515,7 @@ p.copyRightText b {
 .sideBar .workSection {
   margin-top: 40px;
   margin-bottom: 40px;
+  height: 135px;
 }
 
 .sideBar .connectSection {
