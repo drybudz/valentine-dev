@@ -1,55 +1,72 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function ImagesAnimation({
   children,
   allImages = [],
   visibleCount = 16,
   intervalTime = 5000,
-  fadeDuration = 1000 // reduced for better testing
+  fadeDuration = 1000
 }) {
   const [visibleImages, setVisibleImages] = useState([]);
   const [fadingOut, setFadingOut] = useState([]);
+  const availableImages = useRef([]);
 
-  // Helper functions
-  const getRandomIndices = (count, max) => {
-    const indices = new Set();
-    while (indices.size < Math.min(count, max)) {
-      indices.add(Math.floor(Math.random() * max));
-    }
-    return Array.from(indices);
-  };
-
-  const getRandomImages = (count) => {
-    if (allImages.length === 0) return [];
-    const shuffled = [...allImages].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
-  };
-
-  const getNewImage = (currentUrls) => {
-    if (allImages.length === 0) return null;
-    const currentUrlSet = new Set(currentUrls);
-    const availableImages = allImages.filter(img => !currentUrlSet.has(img?.asset?.url));
-    
-    return availableImages.length > 0 
-      ? availableImages[Math.floor(Math.random() * availableImages.length)]
-      : allImages[Math.floor(Math.random() * allImages.length)];
-  };
-
-  // Initialize visible images
+  // Initialize with unique images
   useEffect(() => {
     if (allImages.length > 0) {
-      setVisibleImages(getRandomImages(visibleCount));
+      availableImages.current = [...allImages];
+      setVisibleImages(getRandomUniqueImages(visibleCount));
     }
   }, [allImages, visibleCount]);
+
+  // Get random unique images that aren't currently visible
+  const getRandomUniqueImages = (count) => {
+    const newImages = [];
+    const candidates = [...availableImages.current];
+    
+    while (newImages.length < count && candidates.length > 0) {
+      const randomIndex = Math.floor(Math.random() * candidates.length);
+      const selectedImage = candidates[randomIndex];
+      
+      // Ensure this image isn't already visible
+      if (!visibleImages.some(img => img.asset.url === selectedImage.asset.url)) {
+        newImages.push(selectedImage);
+      }
+      
+      // Remove from candidates regardless to prevent infinite loops
+      candidates.splice(randomIndex, 1);
+    }
+    
+    // If we couldn't find enough unique images, start recycling
+    if (newImages.length < count) {
+      const recycled = allImages.filter(img => 
+        !visibleImages.some(visible => visible.asset.url === img.asset.url)
+      );
+      const needed = count - newImages.length;
+      newImages.push(...shuffleArray(recycled).slice(0, needed));
+    }
+    
+    return newImages;
+  };
+
+  // Fisher-Yates shuffle
+  const shuffleArray = (array) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
 
   // Animation effect
   useEffect(() => {
     if (allImages.length <= visibleCount) return;
 
     const interval = setInterval(() => {
-        const numToReplace = Math.floor(Math.random() * 4) + 2; // Replace 2-5 images
-        const indicesToReplace = getRandomIndices(numToReplace, visibleCount);
+      const numToReplace = Math.floor(Math.random() * 4) + 4; // Replace 4-7 images
+      const indicesToReplace = getRandomIndices(numToReplace, visibleCount);
       
       // Start fade out
       setFadingOut(indicesToReplace);
@@ -57,11 +74,15 @@ export default function ImagesAnimation({
       // After half duration, replace images
       setTimeout(() => {
         setVisibleImages(current => {
-          const currentUrls = current.map(img => img?.asset?.url);
           const newImages = [...current];
-          indicesToReplace.forEach(idx => {
-            newImages[idx] = getNewImage(currentUrls) || newImages[idx];
+          const replacements = getRandomUniqueImages(numToReplace);
+          
+          indicesToReplace.forEach((idx, i) => {
+            if (replacements[i]) {
+              newImages[idx] = replacements[i];
+            }
           });
+          
           return newImages;
         });
         
@@ -74,7 +95,16 @@ export default function ImagesAnimation({
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, [allImages, visibleCount, intervalTime, fadeDuration]);
+  }, [allImages, visibleCount, intervalTime, fadeDuration, visibleImages]);
+
+  // Helper to get unique random indices
+  const getRandomIndices = (count, max) => {
+    const indices = new Set();
+    while (indices.size < Math.min(count, max)) {
+      indices.add(Math.floor(Math.random() * max));
+    }
+    return Array.from(indices);
+  };
 
   return children(visibleImages, fadingOut);
 }

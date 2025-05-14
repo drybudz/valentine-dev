@@ -6,7 +6,7 @@ import StickySidebar from '@/app/components/StickySidebar';
 import { useAppContext } from '@/app/components/AppContext';
 import AboutAnimations from '@/app/components/AboutAnimations';
 import AboutInitAnimation from '@/app/components/AboutInitAnimation';
-import TypeAnimation from '@/app/components/TypeAnimation';
+// import TypeAnimation from '@/app/components/TypeAnimation';
 
 // Elements within AboutAnimations and with the attribute data-animate will get animated
 
@@ -204,13 +204,13 @@ export default function About() {
                     {aboutPageData.pageNote.workTitle && (
                     <div className="workSection">
                         <h2 className="pageNoteTitle">{aboutPageData.pageNote.workTitle}</h2>
-                        <TypeAnimation>
                         {aboutPageData.pageNote.workDescription && (
-                        <p className="pageNoteText" data-text-animate>{aboutPageData.pageNote.workDescription}</p>
+                        <p className="pageNoteText">{aboutPageData.pageNote.workDescription}</p>
                         )}
-                        </TypeAnimation>
                     </div>
                     )}
+
+                    {/* Connect Section */}
                     {aboutPageData.pageNote.connectTitle && (
                     <div className="connectSection">
                         <h2 className="pageNoteTitle">{aboutPageData.pageNote.connectTitle}</h2>
@@ -228,6 +228,25 @@ export default function About() {
                         ))}
                     </div>
                     )}
+
+                    {/* Departments */}
+                    {aboutPageData.pageNote.aboutDepartment1 && (
+                    <div className="departmentsSection">
+                        <h2 className="pageNoteTitle">{aboutPageData.pageNote.aboutDepartment1}</h2>
+                        {aboutPageData.pageNote.aboutEmailD1 && (
+                            <a href={`mailto:${aboutPageData.pageNote.aboutEmailD1}`}>{aboutPageData.pageNote.aboutEmailD1}</a>
+                            )}
+                        <h2 className="pageNoteTitle">{aboutPageData.pageNote.aboutDepartment2}</h2>
+                        {aboutPageData.pageNote.aboutEmailD2 && (
+                            <a href={`mailto:${aboutPageData.pageNote.aboutEmailD2}`}>{aboutPageData.pageNote.aboutEmailD2}</a>
+                            )}
+                        <h2 className="pageNoteTitle">{aboutPageData.pageNote.aboutDepartment3}</h2>
+                        {aboutPageData.pageNote.aboutEmailD3 && (
+                            <a href={`mailto:${aboutPageData.pageNote.aboutEmailD3}`}>{aboutPageData.pageNote.aboutEmailD3}</a>
+                            )}
+                    </div>
+                    )}
+
                     {aboutPageData.pageNote.copyrightText && (
                     <div className="copyRight">
                         <p className="copyRightText"><b>{aboutPageData.pageNote.copyrightBrandName}</b> {aboutPageData.pageNote.copyrightText} {aboutPageData.pageNote.copyrightYear} {aboutPageData.pageNote.copyrightBrandName}</p>

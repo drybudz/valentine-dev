@@ -9,6 +9,7 @@ import Image from 'next/image';
 import LocationsAndEmailAnimator from "../components/LocationsAndEmailAnimator";
 import DivsAnimator from "../components/DivsAnimator";
 import { useAppContext } from "../components/AppContext";
+import BackgroundImage from "../components/BackgroundImage";
 
 
 // export const revalidate = 300; // Revalidate every 5 minutes
@@ -27,19 +28,6 @@ export default function Home() {
     <div className="homePage">
       <div className="container">
 
-
-        {/* Frame Image */}
-        {homePageData?.homeFrame?.asset?.url && (
-          <div className="overlayFrame" style={{ opacity: 1 }}> 
-            <Image
-              src={homePageData.homeFrame.asset.url}
-              alt="Home Overlay Frame"
-              fill
-              style={{ objectFit: 'cover' }}
-              priority
-            />
-          </div>
-        )}
         
         {/* Video */}
         <HomeVideo homePageData={homePageData} />
@@ -97,6 +85,22 @@ export default function Home() {
         
         {/* Our Process 3 */}
         <section className="processSection four">
+        {/* <div className="background-image-wrapper">
+          <Image
+            src={homePageData.homeFrame.asset.url}
+            alt="Background"
+            fill
+            style={{
+              objectFit: 'fill',
+              zIndex: 0
+            }}
+            priority
+          />
+        </div> */}
+        <BackgroundImage 
+          src={homePageData.homeFrame.asset.url} 
+          alt="Background" 
+        />
           <div className="processContainer">
             <H2Animation>
               {homePageData?.processTitle || "Our Process"}

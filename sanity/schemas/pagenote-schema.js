@@ -59,6 +59,42 @@ const pageNote = {
         description: 'Optional links for the "Connect" section (e.g., social media, contact).',
       },
       {
+        name: 'aboutDepartment1',
+        title: 'About Page - Department 1',
+        type: 'string',
+        description: 'Department for the sidebar and mobile footer of the About page',
+      },
+      {
+        name: 'aboutEmailD1',
+        title: 'About Page - Email for Department 1',
+        type: 'string',
+        description: 'Email address associated with Department 1 on the About page',
+      },
+      {
+        name: 'aboutDepartment2',
+        title: 'About Page - Department 2',
+        type: 'string',
+        description: 'Department for the second section in the sidebar and mobile footer of the About page',
+      },
+      {
+        name: 'aboutEmailD2',
+        title: 'About Page - Email for Department 2',
+        type: 'string',
+        description: 'Email address associated with Department 2 on the About page',
+      },
+      {
+        name: 'aboutDepartment3',
+        title: 'About Page - Department 3',
+        type: 'string',
+        description: 'Department for the third section in the sidebar and mobile footer of the About page',
+      },
+      {
+        name: 'aboutEmailD3',
+        title: 'About Page - Email for Department 3',
+        type: 'string',
+        description: 'Email address associated with Department 3 on the About page',
+      },
+      {
         name: 'copyrightText',
         title: 'Copyright Text',
         type: 'string',

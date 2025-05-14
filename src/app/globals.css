@@ -317,7 +317,7 @@ header.navBar.homeNavBar + main {
   justify-content: center; /* Center the content horizontally within this container */
   align-items: center; /* Vertically align items in case they have different heights */
   width: 100%; /* Ensure it takes the full width of the section */
-  padding: 10px 0 15px 0; /* Add some vertical padding for spacing from other elements */
+  padding: 10px 0 15px 0; /* Removed top because of the frame, only if I apply the bg per sectino approach */
   font-family: Helvetica Neue, sans-serif;
   text-transform: uppercase;
   font-size: 12px;
@@ -344,21 +344,21 @@ header.navBar.homeNavBar + main {
   z-index: -1; /* Place behind text */
 }
 
-/*  */
-.overlayFrame {
-  position: fixed; /* Covers entire viewport */
+/* Frame v1 */
+/* .overlayFrame {
+  position: fixed; 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 9999; /* Higher than everything else */
-  pointer-events: none; /* Allows clicks to pass through */
+  z-index: 9999; 
+  pointer-events: none;
 }
 
 .overlayFrame img {
   height: 122% !important;
   top: 7px !important;
-}
+} */
 /*  */
 
 /* "Hidden" name of the company to get an h1 with it  */
@@ -403,6 +403,47 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
       width: 100%;
       margin: 0 auto;
     }
+
+    /* Next.js BG, important note, the Image is at process, tried it a the slogon and it disappears */
+    .processContainer {
+        height: 94vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+    }
+    
+    .background-image-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* To put it behind text */
+        z-index: -1;
+    }
+
+    /* I will maybe have to modify these with js */
+    .background-image-wrapper img {
+        height: 95% !important;
+        top: 10px !important;
+    }
+    /* Works but will try Next.js approach */
+    /* .processContainer {
+        height: 94vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-image: url('https://cdn.sanity.io/images/m2vd2mbt/production/1310b78f98d4b3a22dbbb3b3b711363f40c358a1-7613x4161.png ');
+        background-size: contain;
+        margin-top: 10px !important;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: local;
+        position: relative;
+    } */
 
   .processDescription p {
     font-weight: 500;
@@ -549,6 +590,13 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   
 }
 
+@media (max-width: 1199px) {
+  /* Styles for large screens go here */
+  .coolBG {
+      display: none;
+  }
+}
+
   /* Responsive adjustments for smaller screens */
   /* 7   6   7 */
 
@@ -688,6 +736,20 @@ aside.sideBar .pageNoteText {
   text-wrap: balance;
   line-height: 95%;
   letter-spacing: 0.70px;
+}
+
+aside.sideBar .departmentsSection a {
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: pre-wrap;
+  text-wrap: balance;
+  line-height: 95%;
+  letter-spacing: 0.70px;
+}
+
+aside.sideBar .departmentsSection a:hover {
+  text-decoration: underline;
 }
 
 .homeLastVideoFooter .workSection {
@@ -1280,8 +1342,8 @@ footer .contactLink:hover {
 .aboutTitle {
   font-family: Sloop Script, cursive;
   font-weight: 100;
-  font-size: 69px;
-  margin: 70px 0 25px 0;
+  font-size: 50px;
+  margin: 70px 0 10px 0;
   text-wrap: balance;
   letter-spacing: 0.32px;
 }
@@ -1457,8 +1519,10 @@ footer .contactLink:hover {
 }
 
 /* Sidebar or Page Note Sticky*/ 
+
+
 .sidebar-container {
-  width: 30%;
+  width: 27%;
   position: relative;
 }
 
@@ -1542,8 +1606,14 @@ p.copyRightText b {
   text-decoration: underline;
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  .sideBar {
+      padding: 20px 20px 20px 20px;
+  }
+}
 
-@media (max-width: 575px) {
+
+@media (max-width: 767px) {
   .sidebar-container {
       display: none;
   }
@@ -1568,7 +1638,7 @@ p.copyRightText b {
   }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   .sidebar-container {
       display: block;
   }
