@@ -32,8 +32,6 @@ export default function Home() {
         {/* Video */}
         <HomeVideo homePageData={homePageData} />
 
-        
-
         {/* Home Slogan */}
         <section className="sloganVideo two">
             <div className="SloganContainerVideo">
@@ -85,18 +83,6 @@ export default function Home() {
         
         {/* Our Process 3 */}
         <section className="processSection four">
-        {/* <div className="background-image-wrapper">
-          <Image
-            src={homePageData.homeFrame.asset.url}
-            alt="Background"
-            fill
-            style={{
-              objectFit: 'fill',
-              zIndex: 0
-            }}
-            priority
-          />
-        </div> */}
         <BackgroundImage 
           src={homePageData.homeFrame.asset.url} 
           alt="Background" 

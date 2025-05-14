@@ -12,10 +12,8 @@ function HomeVideo({ homePageData }) {
     const section = sectionRef.current;
 
     const handleVideoLoad = () => {
-      // console.log('handleVideoLoad executed');
       if (section) {
         section.classList.add('videoReady');
-        // Animate video opacity in
         if (video) {
           gsap.to(video, { opacity: 1, duration: 7, ease: 'power1.inOut' });
         }
@@ -25,20 +23,15 @@ function HomeVideo({ homePageData }) {
     if (video && section) {
       // Set initial opacity to 0
       gsap.set(video, { 
-        // filter: 'brightness(0)', 
-        opacity: 0, 
-        // filter: 'blur(10px) brightness(0.5)' 
+        opacity: 0,
       });
 
       // Check if the video is already loaded
-      if (video.readyState >= 2) { // HAVE_CURRENT_DATA or higher
-        // console.log('Video already loaded on mount');
+      if (video.readyState >= 2) {
         section.classList.add('videoReady');
         gsap.to(video, { 
-          // filter: 'brightness(1)', 
-          opacity: 1 , 
+          opacity: 1, 
           delay: 4, 
-          // filter: 'blur(0px) brightness(1)', 
           duration: 7, 
           ease: 'power1.inOut' 
         });
@@ -54,17 +47,40 @@ function HomeVideo({ homePageData }) {
     }
   }, [homePageData]);
 
+  // Helper function to get video URLs with proper extensions
+  const getVideoUrls = (url) => {
+    if (!url) return { webm: null, mp4: null };
+    
+    const baseUrl = url.split('.').slice(0, -1).join('.');
+    return {
+      webm: `${baseUrl}.webm`,
+      mp4: `${baseUrl}.mp4`
+    };
+  };
+
+  const defaultVideoUrls = {
+    webm: "https://cdn.sanity.io/files/m2vd2mbt/production/553b5f5b07875eee33eea3f5988c241b00237e50.webm",
+    mp4: "https://cdn.sanity.io/files/m2vd2mbt/production/553b5f5b07875eee33eea3f5988c241b00237e50.mp4"
+  };
+
+  const videoUrls = homePageData?.homeVideo1?.asset?.url 
+    ? getVideoUrls(homePageData.homeVideo1.asset.url)
+    : defaultVideoUrls;
+
   return (
     <section ref={sectionRef} className="homeVideo">
-      {homePageData?.homeVideo1?.asset?.url ? (
-        <video ref={videoRef} className="videos" autoPlay muted loop playsInline style={{ opacity: 0 }}>
-          <source src={homePageData.homeVideo1.asset.url} type="video/webm" />
-        </video>
-      ) : (
-        <video ref={videoRef} className="videos" autoPlay muted loop playsInline style={{ opacity: 0 }}>
-          <source src="https://cdn.sanity.io/files/2j7eol5d/production/56c9e00e3fe8fdb55409d4dc514f278f1045f115.webm" type="video/webm" />
-        </video>
-      )}
+      <video 
+        ref={videoRef} 
+        className="videos" 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        style={{ opacity: 0 }}
+      >
+        {videoUrls.webm && <source src={videoUrls.webm} type="video/webm" />}
+        {videoUrls.mp4 && <source src={videoUrls.mp4} type="video/mp4" />}
+      </video>
     </section>
   );
 }

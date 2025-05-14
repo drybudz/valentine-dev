@@ -388,7 +388,7 @@ section.sloganVideo.two {
 
 
 
-/* Shadow to help read text over videos */
+/* Shadow to help read text over home video */
 header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .locationsNemail p, .locationsNemail a, .servicesDescription p, .servicesLists, .servicesSection h2, .processSection h2, .processDescription, .processDescription p, .approachContainer p, .approachContainer h2, section.approachSection .pageNote {
   color: white;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
@@ -406,7 +406,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
 
     /* Next.js BG, important note, the Image is at process, tried it a the slogon and it disappears */
     .processContainer {
-        height: 94vh;
+        height: 90vh;
         display: flex;
         align-items: center;
         justify-content: center;
