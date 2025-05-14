@@ -1368,8 +1368,13 @@ footer .contactLink:hover {
 
 .projectDescription {
   /* Include all the base styles */
-  margin: 50px 0 70px 0;
+  margin: 70px 0;
 }
+
+.featureAnimated {
+  margin: 20px 0;
+}
+
 /* Improved About Project Styles */
 
 .aboutProject {
@@ -1383,7 +1388,7 @@ footer .contactLink:hover {
 }
 
 .lastSection {
-  margin-bottom: 300px; 
+  margin-bottom: 200px; 
 }
 
 
@@ -1393,7 +1398,7 @@ footer .contactLink:hover {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 7px;
+  margin: 10px 0 7px;
   text-align: left;
   line-height: 93%;
   letter-spacing: 0.32px;
@@ -1504,15 +1509,18 @@ footer .contactLink:hover {
 }
 
 /* Make featured images responsive based on their default size*/
-@media (max-width: 600px) {
+@media (max-width: 575px) {
+  .featureAnimated {
+      width: 100%;
+  }
   .shortFeaturedImage {
-    width: 70%;
+    width: 80%;
     height: auto;
     max-height: 339px;
   }
   
   .tallFeaturedImage {
-    width: 70%;
+    width: 80%;
     height: auto;
     max-height: 541px;
   }
@@ -1622,6 +1630,7 @@ p.copyRightText b {
   }
   .projectImages, .projectImages2{
     gap: 0;
+    max-height: 700px;
   }
   header.navBar {
       font-size: 12px;
@@ -1633,7 +1642,7 @@ p.copyRightText b {
       width: 77px;
       height: auto;
   }
-  .aboutMain .sectionContainer:last-child {
+  .aboutMain .sectionContainer .lastAboutSection {
     margin-bottom: 150px; 
   }
 }

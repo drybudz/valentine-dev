@@ -33,5 +33,5 @@ export default function AboutInitAnimation({ children }) {
     return () => ctx.revert(); // Cleanup
   }, []);
 
-  return <div ref={containerRef}>{children}</div>;
+  return <div className='firstSectionAbout' ref={containerRef}>{children}</div>;
 }

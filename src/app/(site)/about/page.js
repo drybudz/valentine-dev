@@ -70,7 +70,7 @@ export default function About() {
                                 <p className="projectDescription">{aboutPageData.philosophyDescription2}</p>
                                 )}
                                 {aboutPageData.philosophyFeaturedImage?.asset?.url && (
-                                <div data-animate>
+                                <div className='featureAnimated' data-animate>
                                     <Image
                                     src={aboutPageData.philosophyFeaturedImage.asset.url}
                                     alt={aboutPageData.philosophyFeaturedImage.alt || "Featured Image"}
@@ -90,7 +90,7 @@ export default function About() {
                 </section>
                 </AboutInitAnimation>
 
-                {/* Story Section */}
+                {/* Our Story Section */}
                 <section className="sectionContainer">
                 <div className="aboutContent">
                     <h2 className="aboutTitle" data-animate>{aboutPageData.storyTitle}</h2>
@@ -126,7 +126,8 @@ export default function About() {
                             <p className="projectDescription" data-animate>{aboutPageData.storyDescription2}</p>
                             )}
                             {aboutPageData.storyFeaturedImage?.asset?.url && (
-                            <div data-animate><Image
+                            <div className='featureAnimated' data-animate>
+                                <Image
                                 src={aboutPageData.storyFeaturedImage.asset.url}
                                 alt={aboutPageData.storyFeaturedImage.alt || "Featured Image"}
                                 width={
@@ -135,8 +136,8 @@ export default function About() {
                                 height={
                                 aboutPageData.storyFeaturedImageSize === 'tall' ? 541 : 339
                                 }
-                                className={`featuredImage ${aboutPageData.storyFeaturedImageSize}FeaturedImage`}
-                            /></div>
+                                className={`featuredImage ${aboutPageData.storyFeaturedImageSize}FeaturedImage`}/>
+                            </div>
                             )}
                         </div>
                     </div>
@@ -179,7 +180,7 @@ export default function About() {
                                 <p className="projectDescription" data-animate>{aboutPageData.whoDescription2}</p>
                                 )}
                                 {aboutPageData.whoFeaturedImage?.asset?.url && (
-                                <div data-animate><Image
+                                <div className='featureAnimated' data-animate><Image
                                     src={aboutPageData.whoFeaturedImage.asset.url}
                                     alt={aboutPageData.whoFeaturedImage.alt || "Featured Image"}
                                     width={
