@@ -59,7 +59,7 @@ export default function About() {
                                         unoptimized={image?.asset?.url?.endsWith('.gif')} //  Important:  Handle GIFs correctly
                                         width={500}  //  Set Width and Height to 0
                                         height={1000}
-                                        style={{ width: '100%', height: 'auto' }} //  Make image responsive
+                                        style={{ width: '90%', height: 'auto' }} //  Make image responsive
                                         />
                                     )
                                 ))}
