@@ -257,6 +257,14 @@ header.navBar.homeNavBar + main {
   /* position: relative; - commented out in the second rule */
 }
 
+.SloganContainerVideo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+
 .servicesSection.three{
   min-height: 100vh;
   display: flex;
@@ -317,11 +325,12 @@ header.navBar.homeNavBar + main {
   justify-content: center; /* Center the content horizontally within this container */
   align-items: center; /* Vertically align items in case they have different heights */
   width: 100%; /* Ensure it takes the full width of the section */
-  padding: 10px 0 15px 0; /* Removed top because of the frame, only if I apply the bg per sectino approach */
+  padding: 10px 0 20px 0; /* Removed top because of the frame, only if I apply the bg per sectino approach */
   font-family: Helvetica Neue, sans-serif;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 500;
+  height: 50px;
 }
 
 .locationsCodes,

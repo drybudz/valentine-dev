@@ -39,11 +39,20 @@ export default function Home() {
               <H2Animation>
                 {homePageData?.slogan || "Where Vision Meets Execution"}
               </H2Animation>
-            </div>
-            <LocationsAndEmailAnimator
+              <LocationsAndEmailAnimator
             locations={homePageData.locations}
             email={homePageData.email}
           />
+            </div>
+            
+          {/* <div className="locationsNemail" style={{ opacity: 0, transform: 'translateY(20px)' }}>
+            <div className="locationsCodes">
+              <p>{homePageData.locations}</p>
+            </div>
+            <div className="homeEmail">
+              <a href={`mailto:${homePageData.email}`}>{homePageData.email}k</a>
+            </div>
+          </div> */}
         </section>
 
         {/* Our Services 2 */}
@@ -75,10 +84,20 @@ export default function Home() {
               </DivsAnimator>
             </div>
           
-          <LocationsAndEmailAnimator
+            {/* <LocationsAndEmailAnimator
             locations={homePageData.locations}
             email={homePageData.email}
-          /> 
+          />  */}
+          
+          <div className="locationsNemail">
+            <div className="locationsCodes">
+              <p>{homePageData.locations}</p>
+            </div>
+            <div className="homeEmail">
+              <a href={`mailto:${homePageData.email}`}>{homePageData.email}k</a>
+            </div>
+          </div>
+          
         </section>
         
         {/* Our Process 3 */}
@@ -125,10 +144,18 @@ export default function Home() {
             </div>
           </div>
 
-          <LocationsAndEmailAnimator
+          {/* <LocationsAndEmailAnimator
             locations={homePageData.locations}
             email={homePageData.email}
-          />
+          /> */}
+          <div className="locationsNemail">
+            <div className="locationsCodes">
+              <p>{homePageData.locations}</p>
+            </div>
+            <div className="homeEmail">
+              <a href={`mailto:${homePageData.email}`}>{homePageData.email}k</a>
+            </div>
+          </div>
         </section>
         
         {/* Approach 5 */}
