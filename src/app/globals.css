@@ -333,6 +333,18 @@ header.navBar.homeNavBar + main {
   height: 50px;
 }
 
+.locationsNemail2 {
+  display: flex; /* Enable flexbox for horizontal arrangement of children */
+  justify-content: center; /* Center the content horizontally within this container */
+  align-items: center; /* Vertically align items in case they have different heights */
+  width: 100%; /* Ensure it takes the full width of the section */
+  padding: 10px 0 20px 0; /* Removed top because of the frame, only if I apply the bg per sectino approach */
+  font-family: Helvetica Neue, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .locationsCodes,
 .homeEmail {
   /* Add some horizontal margin to create space between them */
@@ -344,13 +356,14 @@ header.navBar.homeNavBar + main {
 }
 
 #VideoBG, .videos {
-  position: absolute; /* Position relative to .one */
+  position: fixed; /* Position relative to .one */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover; 
   z-index: -1; /* Place behind text */
+  touch-action: none;
 }
 
 /* Frame v1 */
@@ -398,7 +411,7 @@ section.sloganVideo.two {
 
 
 /* Shadow to help read text over home video */
-header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .locationsNemail p, .locationsNemail a, .servicesDescription p, .servicesLists, .servicesSection h2, .processSection h2, .processDescription, .processDescription p, .approachContainer p, .approachContainer h2, section.approachSection .pageNote {
+header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .locationsNemail p, .locationsNemail a, .locationsNemail2 p, .locationsNemail2 a, .servicesDescription p, .servicesLists, .servicesSection h2, .processSection h2, .processDescription, .processDescription p, .approachContainer p, .approachContainer h2, section.approachSection .pageNote {
   color: white;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   text-align: center;

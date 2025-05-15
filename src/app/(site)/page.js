@@ -39,20 +39,21 @@ export default function Home() {
               <H2Animation>
                 {homePageData?.slogan || "Where Vision Meets Execution"}
               </H2Animation>
-              <LocationsAndEmailAnimator
+              {/* <LocationsAndEmailAnimator
             locations={homePageData.locations}
             email={homePageData.email}
-          />
-            </div>
-            
-          {/* <div className="locationsNemail" style={{ opacity: 0, transform: 'translateY(20px)' }}>
+          /> */}
+          <div className="locationsNemail2">
             <div className="locationsCodes">
               <p>{homePageData.locations}</p>
             </div>
             <div className="homeEmail">
-              <a href={`mailto:${homePageData.email}`}>{homePageData.email}k</a>
+              <a href={`mailto:${homePageData.email}`}>{homePageData.email}</a>
             </div>
-          </div> */}
+          </div>
+            </div>
+            
+          
         </section>
 
         {/* Our Services 2 */}
@@ -94,7 +95,7 @@ export default function Home() {
               <p>{homePageData.locations}</p>
             </div>
             <div className="homeEmail">
-              <a href={`mailto:${homePageData.email}`}>{homePageData.email}k</a>
+              <a href={`mailto:${homePageData.email}`}>{homePageData.email}</a>
             </div>
           </div>
           
@@ -153,7 +154,7 @@ export default function Home() {
               <p>{homePageData.locations}</p>
             </div>
             <div className="homeEmail">
-              <a href={`mailto:${homePageData.email}`}>{homePageData.email}k</a>
+              <a href={`mailto:${homePageData.email}`}>{homePageData.email}</a>
             </div>
           </div>
         </section>

@@ -33,7 +33,7 @@ export default function BackgroundImage({ src, alt }) {
     <div className='coolBG' 
       ref={containerRef}
       style={{
-        position: 'absolute',
+        position: 'fixed',
         top: isFooterVisible ? '20px' : '10px',
         left: 0,
         right: 0,
