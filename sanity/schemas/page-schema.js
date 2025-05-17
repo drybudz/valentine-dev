@@ -70,6 +70,21 @@ const page = {
         description: 'Optional contact information for this page (supports rich text).',
       },
       {
+        name: 'tbd',
+        title: 'Coming Soon Text',
+        type: 'string',
+        description: `
+          Special patterns:
+          • "Text.:" → Adds .: then removes both
+          • "Text.." → Adds .. then removes both
+          • "Text..." → Adds ... (stays)
+          • "Text...." → Adds ... then removes all
+          • "Text....." → Adds .... then keeps ...
+          Empty shows "TBD"
+        `,
+        initialValue: 'Coming Soon'
+      },
+      {
         name: 'teamMembers',
         title: 'Team Members',
         type: 'array',

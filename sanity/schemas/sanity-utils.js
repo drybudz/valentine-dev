@@ -297,6 +297,7 @@ export async function getProject(slug) {
           },
           pageDescription, // Added from getFullPagesData
           contactInfo,     // Added from getFullPagesData
+          tbd,
           teamMembers[]->{  // Added from getFullPagesData
             _id,
             fullName,

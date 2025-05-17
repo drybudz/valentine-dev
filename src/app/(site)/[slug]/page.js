@@ -7,6 +7,9 @@ import { useAppContext } from "@/app/components/AppContext";
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ImagesAnimation from "@/app/components/ImagesAnimation";
+import StickyNav from "@/app/components/StickyNav";
+import SoonAnimation from "@/app/components/SoonAnimation";
+// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 // export const revalidate = 300; // Revalidate every 5 minutes
 
@@ -61,7 +64,7 @@ export default function Page() {
     return(
         <div className="pageContainer">
             {/* Dynamic Header based on current page */}
-            <header>
+            <header className={isTalentPage ? "talent-page" : ""}>
                 <h1 className="pageTitle">{currentPage.pageTitle}</h1>
                 <div className="pageDescription">
                     <PortableText value={currentPage.pageDescription}/>
@@ -73,8 +76,20 @@ export default function Page() {
             
             <div className="pageContent">
                 {/* Talent Page Content */}
-                {isTalentPage && pageTalent.teamMembers && pageTalent.teamMembers.length > 0 && (
+                
+                {/* {isTalentPage && pageTalent.teamMembers && pageTalent.teamMembers.length > 0 && ( */}
+                {isTalentPage && (
+                    
                     <div className="gallery">
+                        <div className="stickNav">
+                            <StickyNav></StickyNav> 
+                        </div>
+                        {/* <h2>Coming Soon</h2> */}
+                        {/* <SoonAnimation>{currentPage.tbd}</SoonAnimation> */}
+                        <SoonAnimation>{currentPage.tbd}</SoonAnimation>
+
+                        {/*Coming Soon
+                        
                         {pageTalent.teamMembers.map((member) => (
                             <div className="gallery-panel" key={member._id}>
                                 <div className="panel-content">
@@ -94,11 +109,12 @@ export default function Page() {
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        ))} */}
                     </div>
                 )}
 
-                {/* Work Page */}
+                {/* Work Page  Content*/}
+                
                 {/* IF CURRENT PATH == /work do this */}
                 {isWorkPage && pageWork.projects && pageWork.projects.length > 0 && (
                 <ImagesAnimation 
