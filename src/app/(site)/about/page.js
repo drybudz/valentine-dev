@@ -233,18 +233,26 @@ export default function About() {
                     {/* Departments */}
                     {aboutPageData.pageNote.aboutDepartment1 && (
                     <div className="departmentsSection">
+                        {aboutPageData.pageNote.aboutDepartment1 && (
                         <h2 className="pageNoteTitle">{aboutPageData.pageNote.aboutDepartment1}</h2>
+                        )}
                         {aboutPageData.pageNote.aboutEmailD1 && (
-                            <a href={`mailto:${aboutPageData.pageNote.aboutEmailD1}`}>{aboutPageData.pageNote.aboutEmailD1}</a>
-                            )}
+                        <a href={`mailto:${aboutPageData.pageNote.aboutEmailD1}`}>{aboutPageData.pageNote.aboutEmailD1}</a>
+                        )}
+                        
+                        {aboutPageData.pageNote.aboutDepartment2 && (
                         <h2 className="pageNoteTitle">{aboutPageData.pageNote.aboutDepartment2}</h2>
+                        )}
                         {aboutPageData.pageNote.aboutEmailD2 && (
-                            <a href={`mailto:${aboutPageData.pageNote.aboutEmailD2}`}>{aboutPageData.pageNote.aboutEmailD2}</a>
-                            )}
+                        <a href={`mailto:${aboutPageData.pageNote.aboutEmailD2}`}>{aboutPageData.pageNote.aboutEmailD2}</a>
+                        )}
+                        
+                        {aboutPageData.pageNote.aboutDepartment3 && (
                         <h2 className="pageNoteTitle">{aboutPageData.pageNote.aboutDepartment3}</h2>
+                        )}
                         {aboutPageData.pageNote.aboutEmailD3 && (
-                            <a href={`mailto:${aboutPageData.pageNote.aboutEmailD3}`}>{aboutPageData.pageNote.aboutEmailD3}</a>
-                            )}
+                        <a href={`mailto:${aboutPageData.pageNote.aboutEmailD3}`}>{aboutPageData.pageNote.aboutEmailD3}</a>
+                        )}
                     </div>
                     )}
 

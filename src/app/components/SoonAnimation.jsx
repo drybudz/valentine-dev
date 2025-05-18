@@ -177,13 +177,13 @@ export default function SoonAnimation({ children }) {
     });
 
     // Final floating animation (looped)
-    tl.to(containerRef.current, {
-      y: -5,
-      duration: 2,
-      ease: "sine.inOut",
-      repeat: -1,
-      yoyo: true
-    });
+    // tl.to(containerRef.current, {
+    //   y: -5,
+    //   duration: 2,
+    //   ease: "sine.inOut",
+    //   repeat: -1,
+    //   yoyo: true
+    // });
 
     return () => tl.kill();
   }, [text]);
